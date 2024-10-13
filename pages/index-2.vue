@@ -1,0 +1,26 @@
+<template>
+   <div>
+      <HeaderTwo />
+      <MainSliderTwo />
+      <FeatureTwo />
+      <AboutTwo />
+      <ServiceTwo />
+      <FaqOne />
+      <EventOne />
+      <TabOne />
+      <ClientCarouselOne exClass="client-carousel--home-two" />
+      <TestimonialsCarousel />
+      <ContactOne />
+      <VideoTwo />
+      <BlogTwo />
+      <InstagramOne />
+      <CtaTwo />
+      <Footer />
+      <SearchPopup />
+      <Drawer />
+   </div>
+</template>
+
+<script setup></script>
+
+<style lang="scss" scoped></style>

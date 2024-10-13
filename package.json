@@ -1,0 +1,42 @@
+{
+   "name": "nuxt-app",
+   "private": true,
+   "type": "module",
+   "scripts": {
+      "build": "nuxt build",
+      "dev": "nuxt dev",
+      "generate": "nuxt generate",
+      "preview": "nuxt preview",
+      "postinstall": "nuxt prepare"
+   },
+   "dependencies": {
+      "@formkit/auto-animate": "^0.8.2",
+      "@glidejs/glide": "^3.6.2",
+      "@pinia/nuxt": "^0.5.4",
+      "@splidejs/splide": "^4.1.4",
+      "@splidejs/vue-splide": "^0.6.12",
+      "glightbox": "^3.3.0",
+      "gsap": "^3.12.5",
+      "isotope-layout": "^3.0.6",
+      "jarallax": "^2.2.1",
+      "keen-slider": "^6.8.6",
+      "nuxt": "^3.13.0",
+      "nuxt-swiper": "^1.2.2",
+      "nuxt-vue-select": "^0.1.4",
+      "pinia": "^2.2.2",
+      "tiny-slider": "^2.9.4",
+      "vee-validate": "^4.13.2",
+      "vue": "latest",
+      "vue-countup-v3": "^1.4.2",
+      "vue-router": "latest",
+      "vue-select": "^4.0.0-beta.6",
+      "vue-select-picker-bootstrap": "^1.0.5",
+      "wow.js": "^1.2.2",
+      "yup": "^1.4.0"
+   },
+   "devDependencies": {
+      "@hypernym/nuxt-gsap": "^2.4.3",
+      "nuxt-splide": "^1.1.1",
+      "vue-observe-visibility": "^2.0.0-alpha.1"
+   }
+}
