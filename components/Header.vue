@@ -54,7 +54,6 @@
                   </li>
                 </ul>
               </li>
-
               <li v-for="item in navItems" :key="item.name" :class="[item.subItems ? 'dropdown' : '', isCurrentRoute(item) ? 'current' : '']">
                 <NuxtLink :to="item.href">{{ item.name }}</NuxtLink>
                 <ul v-if="item.subItems" class="sub-menu">
