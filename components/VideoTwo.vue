@@ -7,7 +7,7 @@
                   <!-- Text content -->
                   <div class="col-lg-7 d-flex align-items-center">
                      <div class="video-two__content">
-                        <h5 class="video-two__title">{{ videoSectionData?.title || 'Default Title' }}</h5>
+                        <h5 class="video-two__title">{{ videoSectionData?.title || 'Default Title' }} code upadted</h5>
                         <ul class="video-two__list">
                            <li v-for="(item, index) in videoSectionData?.list || []" :key="index">
                               <span class="video-two__list__icon">
