@@ -1,15 +1,15 @@
 <template>
-   <div>
-      <TopBarTwo />
-      <HeaderFour />
-      <PageHeader title="Testimonials Page" currentPage="Testimonials" />
-      <PricingOne exClass="pricing-one--page" />
-      <CtaTwo />
-      <Footer />
-      <SearchPopup />
-      <Drawer />
-      <SidebarOne />
-   </div>
+  <div>
+    <TopBarTwo />
+    <HeaderFour />
+    <PageHeader title="Packages Page" currentPage="Packages" />
+    <PricingOne exClass="pricing-one--page" />
+    <CtaTwo />
+    <Footer />
+    <SearchPopup />
+    <Drawer />
+    <SidebarOne />
+  </div>
 </template>
 
 <script setup></script>

@@ -21,14 +21,14 @@ const checkStylesheetsLoaded = () => {
     const totalStylesheets = stylesheets.length;
 
     if (totalStylesheets === 0) {
-      resolve(); // If no stylesheets, resolve immediately
+      resolve();
     }
 
     stylesheets.forEach((link) => {
       if (link.sheet) {
         loadedCount++;
         if (loadedCount === totalStylesheets) {
-          resolve(); // All stylesheets are already loaded
+          resolve();
         }
       } else {
         link.onload = () => {

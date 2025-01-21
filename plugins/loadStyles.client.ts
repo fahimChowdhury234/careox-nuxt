@@ -46,6 +46,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         document.head.appendChild(styleElement.value);
       } else {
         const careox = await import("~/assets/css/careox.css?inline");
+        console.log(careox, "careox");
 
         // Apply default styles
         // @ts-ignore

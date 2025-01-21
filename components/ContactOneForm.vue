@@ -24,7 +24,6 @@
           <client-only>
             <v-select :options="subjects" v-model="form.subject" placeholder="Subject" />
           </client-only>
-
           <span v-if="errors.subject" class="error">{{ errors.subject }}</span>
         </div>
       </div>
@@ -33,17 +32,24 @@
         <span v-if="errors.message" class="error">{{ errors.message }}</span>
       </div>
       <div class="form-one__control form-one__control--full">
-        <button type="submit" class="careox-btn"><span>Send Request</span></button>
+        <button type="submit" class="careox-btn" :disabled="loading">
+          <span v-if="loading">Submitting...</span>
+          <span v-else>Send Request</span>
+        </button>
       </div>
-      <!-- /.form-one__control -->
+      <div class="result">
+        <p v-if="successMessage" class="success">{{ successMessage }}</p>
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+      </div>
     </div>
   </form>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { contactData } from "@/data/ContactOne";
 // import VSelect from "vue-select-picker-bootstrap";
+
 const { formTitle, formDescription, formTagline } = contactData;
 
 const form = reactive({
@@ -61,23 +67,71 @@ const errors = reactive({
   subject: "",
   message: "",
 });
-const subjects = ["Volunteer", "Donations", "Foods Support", "Education Support", "Medical Support", "Sports Support"];
+
+const subjects = ["Volunteer", "Donations", "Food Support", "Education Support", "Medical Support", "Sports Support"];
+const loading = ref(false);
+const successMessage = ref("");
+const errorMessage = ref("");
 
 const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 };
 
-const handleSubmit = () => {
-  errors.name = form.name ? "" : "Name is required";
-  errors.email = form.email && validateEmail(form.email) ? "" : "A valid email is required";
-  errors.phone = form.phone ? "" : "Phone number is required";
+const handleSubmit = async () => {
+  // Trim and validate inputs
+  errors.name = form.name.trim() ? "" : "Name is required";
+  errors.email = form.email.trim() && validateEmail(form.email) ? "" : "A valid email is required";
+  errors.phone = form.phone.trim() ? "" : "Phone number is required";
   errors.subject = form.subject ? "" : "Subject is required";
-  errors.message = form.message ? "" : "Message is required";
+  errors.message = form.message.trim() ? "" : "Message is required";
 
   if (!Object.values(errors).some((error) => error !== "")) {
     // Handle form submission
-    console.log("Form data:", form);
+    loading.value = true;
+    successMessage.value = "";
+    errorMessage.value = "";
+
+    const formDataToSend = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      subject: form.subject,
+      message: form.message.trim(),
+    };
+
+    try {
+      const response = await fetch("https://formspree.io/f/mdkovzae", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDataToSend),
+      });
+
+      if (response.ok) {
+        successMessage.value = "Review submitted successfully!";
+        // Reset the reactive form object
+        Object.assign(form, {
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+
+        // Clear the success message after 5 seconds
+        setTimeout(() => {
+          successMessage.value = "";
+        }, 5000);
+      } else {
+        errorMessage.value = "Something went wrong. Please try again.";
+      }
+    } catch (error) {
+      errorMessage.value = "An error occurred. Please try again.";
+    } finally {
+      loading.value = false;
+    }
   }
 };
 </script>
@@ -85,6 +139,14 @@ const handleSubmit = () => {
 <style scoped>
 .error {
   color: red;
-  font-size: 12px;
+  font-size: 14px;
+}
+.success {
+  color: green;
+  font-size: 14px;
+}
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 </style>

@@ -7,9 +7,9 @@
                   <!-- Text content -->
                   <div class="col-lg-7 d-flex align-items-center">
                      <div class="video-two__content">
-                        <h5 class="video-two__title">{{ videoSectionData.title }}</h5>
+                        <h5 class="video-two__title">{{ videoSectionData?.title || 'Default Title' }}</h5>
                         <ul class="video-two__list">
-                           <li v-for="(item, index) in videoSectionData.list" :key="index">
+                           <li v-for="(item, index) in videoSectionData?.list || []" :key="index">
                               <span class="video-two__list__icon">
                                  <i :class="item.icon"></i>
                               </span>
@@ -24,8 +24,8 @@
                   <!-- Video content -->
                   <div class="col-lg-5">
                      <div class="video-two__image">
-                        <img :src="videoSectionData.videoImage" alt="careox" />
-                        <NuxtLink :to="videoSectionData.videoLink" class="video-popup">
+                        <img :src="videoSectionData?.videoImage || ''" alt="careox" />
+                        <NuxtLink :to="videoSectionData?.videoLink || '#'" class="video-popup">
                            <i class="icon-play-button"></i>
                            <i class="ripple"></i>
                         </NuxtLink>
@@ -39,17 +39,17 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import { videoSectionData } from "@/data/VideoTwo";
+
 onMounted(() => {
-   new GLightbox({
-      selector: ".video-popup",
-      touchNavigation: true,
-      loop: true,
-      autoplayVideos: true,
-   });
+   if (process.client) {
+      new GLightbox({
+         selector: ".video-popup",
+         touchNavigation: true,
+         loop: true,
+         autoplayVideos: true,
+      });
+   }
 });
 </script>
-
-<style scoped>
-/* Add styles if needed */
-</style>

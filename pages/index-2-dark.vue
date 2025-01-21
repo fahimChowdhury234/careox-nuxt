@@ -12,7 +12,9 @@
          <ClientCarouselOne />
          <!-- <TestimonialsCarousel /> -->
          <ContactOne />
-         <VideoTwo />
+         <client-only>
+            <VideoTwo />
+         </client-only>
          <BlogTwo />
          <InstagramOne />
          <CtaTwo />

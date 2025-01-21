@@ -11,7 +11,9 @@
       <ClientCarouselOne exClass="client-carousel--home-two" />
       <TestimonialsCarousel />
       <ContactOne />
-      <VideoTwo />
+      <client-only>
+         <VideoTwo />
+      </client-only>
       <BlogTwo />
       <InstagramOne />
       <CtaTwo />
